@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { GetArticles } from '../../Services/ArticlesApiService';
-import { Image, colors } from "react-native-elements"
-import { bold } from 'ansi-colors';
+import { Image } from "react-native-elements"
 
 export default class HomeScreen extends Component {
   state = { 
