@@ -1,11 +1,10 @@
 import axios from 'axios'
 import { AsyncStorage } from 'react-native'
-import console = require('console');
 
 const apiUrl = 'https://classy-news-backend.herokuapp.com/'
 
 const authenticate = async (email, password) => {
-  const path = apiUrl 'auth/sign_in'
+  const path = apiUrl + 'auth/sign_in'
   try {
     let response = await axios.post(path, {
       email: email,
