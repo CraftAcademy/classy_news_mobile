@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Button, FlatList } from 'react-native'
 import { authenticate } from '../../Services/AuthService'
 import LoginForm from './LoginForm'
 import { GetArticles } from '../../Services/ArticlesApiService'
+import { Image } from 'react-native-elements'
 
 export default class HomeScreen extends Component {
   state = {
@@ -90,24 +91,32 @@ export default class HomeScreen extends Component {
       <View>
         <Text>Here are articles:</Text>
         <Image
-            style={{ width: 100, height: 100 }}
-            source={{ uri: article.image }}
-          />
-        <Text>{article.title}</Text>
-        <Text>{article.content}</Text>
-        <Text>{article.author}</Text>
+          style={styles.image}
+          source={{ uri: article.image }}
+        />
+        <Text 
+          style ={styles.title} >
+          {article.title}
+        </Text> 
+        <Text 
+          style={styles.content}>
+          {article.content}
+        </Text> 
+        <Text 
+          style={styles.author}>
+          {article.author}
+        </Text> 
         <Button
-            title="View Article"
-            onPress={() => this.showArticle()}
-          />
+          title="View Article"
+          onPress={() => this.showArticle()}
+        />
       </View>
     )
   }
 
   showArticle() {
     this.props.navigation.navigate('Article', {
-      message: 'This was sent from HomeScreen',
-      anotherMessage: 'Hello from Homescreen'
+      fullArticle: this.state.fullArticle
     })
   }
 
@@ -123,6 +132,7 @@ export default class HomeScreen extends Component {
           renderItem={this.renderArticles}
           keyExtractor={item => item.id.toString()}
         />
+        <Text style={styles.header}>Trial from HomeScreen</Text>
       </View>
     )
   }
@@ -140,5 +150,24 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  image:{
+    width: 130, 
+    height: 100,
+    marginLeft: 20,
+    padding:90
+  },
+  title: {
+    padding: 10,
+    fontSize: 30,
+    fontFamily: 'Cochin',
+    fontWeight: 'bold'
+  },
+  content:{
+    margin:1,
+    padding: 10,
+    fontSize: 25,
+    fontFamily: 'Cochin',
+    color: '#363737'
  }
 });
