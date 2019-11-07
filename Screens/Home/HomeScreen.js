@@ -30,10 +30,13 @@ export default class HomeScreen extends Component {
         user: response.user
       })
     } else {
+      this.setState({
+        renderLoginForm: false
+      })
       console.log('error during onLogin function')
     }
   }
-
+ 
   emailStateHandler = text => {
     this.setState({
       email: text
