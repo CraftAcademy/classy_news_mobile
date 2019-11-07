@@ -26,14 +26,20 @@ export default class HomeScreen extends Component {
         authenticated: true,
         user: response.user
       })
+      return <View>You are signed in.</View>
     } else {
       return <View>Wrong password or email.</View>
     }
   }
 
-  emailPasswordHandler = (event) => {
+  emailStateHandler = text => {
     this.setState({
-      [event.target.name]: event.target.value
+      email: text
+    })
+  }
+  passwordStateHandler = text => {
+    this.setState({
+      password: text
     })
   }
 
@@ -50,9 +56,10 @@ export default class HomeScreen extends Component {
         return (
           <View>
             <LoginForm 
-              loginHandler={this.onLogin} 
+              onLogin={this.onLogin} 
               handleLogin={this.handleLogin}
-              emailPasswordHandler ={this.emailPasswordHandler}
+              handleEmail={this.emailStateHandler}
+              handlePassword={this.passwordStateHandler}
             />
           </View>
         )

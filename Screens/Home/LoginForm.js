@@ -11,24 +11,26 @@ const LoginForm = props => {
   return (
     <View style={styles.container}>
       <TextInput 
+        type='text'
         style={styles.input}
         underlineColorAndroid='transparent'
         placeholder='Email'
         placeholderTextColor='#9a73ef'
         autoCapitalize='none'
-        onChangeText={props.emailPasswordHandler.email}
+        onChangeText={props.handleEmail}
       />
       <TextInput
+        type='password'
         style={styles.input}
         underlineColorAndroid='transparent'
         placeholder='Password'
         placeholderTextColor='#9a73ef'
         autoCapitalize='none'
-        onChangeText={props.emailPasswordHandler.password}
+        onChangeText={props.handlePassword}
       />
       <TouchableOpacity 
       style={styles.submitButton}
-      onPress={props.loginHandler}
+      onPress={props.onLogin}
       >
       <Text style={styles.submitButtonText}>Submit</Text>
       </TouchableOpacity>
