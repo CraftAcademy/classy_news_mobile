@@ -1,8 +1,7 @@
-import { createAppContainer } from 'react-navigtion'
-import { createStackNavigator } from 'react-navigarion-stack'
-import HoemScreen from './Screens/Home/HomeScreen'
+import { createAppContainer } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation-stack'
+import HomeScreen from './Screens/Home/HomeScreen'
 import ArticleScreen from './Screens/Article/ArticleScreen'
-import { NativeComponent } from 'react-native';
 
 const NavStack = createStackNavigator({
   Home: { screen: HomeScreen },
@@ -11,4 +10,4 @@ const NavStack = createStackNavigator({
 
 const AppNavigator = createAppContainer(NavStack)
 
-export default AppNavigator
+export default AppNavigator;

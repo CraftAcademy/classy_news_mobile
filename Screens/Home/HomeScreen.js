@@ -1,17 +1,19 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, Button } from 'react-native'
+import { StyleSheet, Text, View, Button, FlatList } from 'react-native'
 import { authenticate } from '../../Services/AuthService'
 import LoginForm from './LoginForm'
+import { GetArticles } from '../../Services/ArticlesApiService'
 
 export default class HomeScreen extends Component {
   state = {
+    articles: [],
     renderLoginForm: false,
     authenticated: false,
     email: '',
     password: '',
     user: ''
   }
-
+  
   renderLoginForm = () => {
     this.setState({
       renderLoginForm: true
@@ -26,9 +28,8 @@ export default class HomeScreen extends Component {
         authenticated: true,
         user: response.user
       })
-      return <View>You are signed in.</View>
     } else {
-      return <View>Wrong password or email.</View>
+      console.log('error during onLogin function')
     }
   }
 
@@ -75,7 +76,41 @@ export default class HomeScreen extends Component {
       }
     }
   }
-  
+
+  async componentDidMount() {
+    let response = await GetArticles()
+    this.setState({
+      articles: response
+    })
+  }
+
+  renderArticles = ({ item }) => {
+    const article = item 
+    return (
+      <View>
+        <Text>Here are articles:</Text>
+        <Image
+            style={{ width: 100, height: 100 }}
+            source={{ uri: article.image }}
+          />
+        <Text>{article.title}</Text>
+        <Text>{article.content}</Text>
+        <Text>{article.author}</Text>
+        <Button
+            title="View Article"
+            onPress={() => this.showArticle()}
+          />
+      </View>
+    )
+  }
+
+  showArticle() {
+    this.props.navigation.navigate('Article', {
+      message: 'This was sent from HomeScreen',
+      anotherMessage: 'Hello from Homescreen'
+    })
+  }
+
   render() {
     let renderLogin = this.renderLogin()
 
@@ -83,6 +118,11 @@ export default class HomeScreen extends Component {
       <View style={styles.container}>
         <Text style={styles.header}>Classy News</Text>
         {renderLogin}
+        <FlatList 
+          data={this.state.articles}
+          renderItem={this.renderArticles}
+          keyExtractor={item => item.id.toString()}
+        />
       </View>
     )
   }
