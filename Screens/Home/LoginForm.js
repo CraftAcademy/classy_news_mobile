@@ -20,7 +20,7 @@ const LoginForm = props => {
         onChangeText={props.handleEmail}
       />
       <TextInput
-        type='password'
+        secureTextEntry={true}
         style={styles.input}
         underlineColorAndroid='transparent'
         placeholder='Password'
