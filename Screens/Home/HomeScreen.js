@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
-import {StyleSheet, Text, View, FlatList} from 'react-native'
-import {GetArticles} from '../../Services/ArticlesAPiService'
+import {StyleSheet, Text, View, Button, FlatList} from 'react-native'
+// import {GetArticles} from '../../Services/ArticlesAPiService'
 import { authenticate } from '../../Services/AuthService'
 import LoginForm from './LoginForm'
 
 export default class HomeScreen extends Component {
   state = {
-    articles = [],
+    // articles = [],
     renderLoginForm: false,
     authenticated: false,
     email: '',
@@ -14,12 +14,12 @@ export default class HomeScreen extends Component {
     user: ''
   }
 
-  async componentDidMount() {
-    let response = await GetArticles()
-    this.setState({
-      articles: response
-    })
-  }
+  // async componentDidMount() {
+  //   // let response = await GetArticles()
+  //   this.setState({
+  //     articles: response
+  //   })
+  // }
 
   renderLoginForm = () => {
     this.setState({
@@ -27,23 +27,23 @@ export default class HomeScreen extends Component {
     })
   }
 
-  renderArticles = ({ item }) => {
-    const article = item
-    return (
-      <View>
-        <Image 
-          style={styles.image}
-          source={{ uri: article.image }}
-        />
-        <Text style ={styles.title} >
-          {article.title}
-        </Text>    
+  // renderArticles = ({ item }) => {
+  //   const article = item
+  //   return (
+  //     <View>
+  //       <Image 
+  //         style={styles.image}
+  //         source={{ uri: article.image }}
+  //       />
+  //       <Text style ={styles.title} >
+  //         {article.title}
+  //       </Text>    
         
-        <Text style={styles.content}>
-          {article.content}</Text> 
-      </View>
-    )
-  }
+  //       <Text style={styles.content}>
+  //         {article.content}</Text> 
+  //     </View>
+  //   )
+  // }
 
   onLogin = async () => {
     let response = await authenticate(this.state.email, this.state.password)
@@ -102,11 +102,11 @@ export default class HomeScreen extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.header}>Classy News</Text>
-        <FlatList 
+        {/* <FlatList 
           data={this.state.articles}
           renderItem={this.renderArticles}
           keyExtractor={item => item.id.toString()}
-        />
+        /> */}
         {renderLogin}
       </View>
     )

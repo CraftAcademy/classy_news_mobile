@@ -27,7 +27,7 @@ const LoginForm = props => {
         onChangeText={props.emailPasswordHandler.password}
       />
       <TouchableOpacity 
-      styles={styles.submitButton}
+      style={styles.submitButton}
       onPress={props.loginHandler}
       >
       <Text style={styles.submitButtonText}>Submit</Text>
