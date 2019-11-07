@@ -5,7 +5,7 @@ import { Image } from "react-native-elements"
 
 export default class HomeScreen extends Component {
   state = { 
-    aticles: []
+    articles: []
   }
 
   async componentDidMount() {
@@ -28,7 +28,8 @@ export default class HomeScreen extends Component {
         </Text>    
         
         <Text style={styles.content}>
-          {article.content}</Text> 
+          {article.content}
+        </Text> 
       </View>
     )
   }
