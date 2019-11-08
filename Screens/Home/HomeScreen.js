@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { GetArticles } from '../../Services/ArticlesApiService';
-import { Image } from "react-native-elements"
+import { Image } from 'react-native-elements'
 
 export default class HomeScreen extends Component {
   state = { 
@@ -10,6 +10,7 @@ export default class HomeScreen extends Component {
 
   async componentDidMount() {
     let response = await GetArticles()
+    debugger
     this.setState({
       articles: response
     })
@@ -26,7 +27,6 @@ export default class HomeScreen extends Component {
         <Text style ={styles.title} >
           {article.title}
         </Text>    
-        
         <Text style={styles.content}>
           {article.content}
         </Text> 
@@ -37,6 +37,9 @@ export default class HomeScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Image 
+        style={{width: 50, height: 50}}
+        source={require('./rb.png')}/>
         <Text style={styles.header}>Classy News</Text>
         <FlatList 
           data={this.state.articles}
@@ -62,7 +65,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
 
   },
-  image:{
+  image: {
    width: 130, 
    height: 100,
    marginLeft: 20,
@@ -74,7 +77,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Cochin',
     fontWeight: 'bold'
   },
-  content:{
+  content: {
     margin:1,
     padding: 10,
     fontSize: 25,
