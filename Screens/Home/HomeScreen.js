@@ -51,18 +51,19 @@ export default class HomeScreen extends Component {
 
 const styles = StyleSheet.create({
   articles: {
+    margin: 25,
     flexDirection: 'column',
-    justifyContent: 'center'
+    borderWidth: 0.5,
+    borderColor: '#505050'
   },
   container: {
     flex: 1,
     backgroundColor: 'white',
-    alignItems: 'center',
-    justifyContent: 'space-between'
+    alignItems: 'center'
   },
   image: {
     alignSelf: 'center',
-    width: 300, 
+    resizeMode: 'stretch',
     height: 200,
     marginLeft: 20
   },
