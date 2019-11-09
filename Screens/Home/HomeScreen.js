@@ -16,14 +16,10 @@ export default class HomeScreen extends Component {
     })
   }
 
-  makeIngress = (content) => {
-    debugger
-    let ingress = content.split(' ').slice(0, 5).join(' ')
-    return ingress + ' ...'
-  }
-
   renderArticles = ({ item }) => {
     const article = item
+    let trim_ingress = article.content.substr(0, 75)
+    let ingress = trim_ingress.substr(0, Math.min(trim_ingress.length, trim_ingress.lastIndexOf(" "))) + ' ...'
     return (
       <View style={styles.articles}>
         <Image 
@@ -33,7 +29,7 @@ export default class HomeScreen extends Component {
         <Text style ={styles.title} >
           {article.title}
         </Text>    
-        <Text style={styles.content}>{this.makeIngress(article.content)}
+        <Text style={styles.content}>{ingress}
         </Text> 
       </View>
     )
