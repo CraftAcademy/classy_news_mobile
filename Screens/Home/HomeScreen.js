@@ -11,16 +11,21 @@ export default class HomeScreen extends Component {
 
   async componentDidMount() {
     let response = await GetArticles()
-    debugger
     this.setState({
       articles: response
     })
   }
 
+  makeIngress = (content) => {
+    debugger
+    let ingress = content.split(' ').slice(0, 5).join(' ')
+    return ingress + ' ...'
+  }
+
   renderArticles = ({ item }) => {
     const article = item
     return (
-      <View>
+      <View style={styles.articles}>
         <Image 
           style={styles.image}
           source={{ uri: article.image }}
@@ -28,8 +33,7 @@ export default class HomeScreen extends Component {
         <Text style ={styles.title} >
           {article.title}
         </Text>    
-        <Text style={styles.content}>
-          {article.content}
+        <Text style={styles.content}>{this.makeIngress(article.content)}
         </Text> 
       </View>
     )
@@ -38,7 +42,7 @@ export default class HomeScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Header/>
+        <Header style={{flex:2}}/>
         <FlatList 
           data={this.state.articles}
           renderItem={this.renderArticles}
@@ -50,11 +54,15 @@ export default class HomeScreen extends Component {
 }
 
 const styles = StyleSheet.create({
+  articles: {
+    flexDirection: 'column',
+    justifyContent: 'center'
+  },
   container: {
     flex: 1,
     backgroundColor: 'white',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'space-between'
   },
   image: {
     alignSelf: 'center',

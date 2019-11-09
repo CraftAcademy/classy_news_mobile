@@ -5,11 +5,9 @@ const url = 'https://classy-news-backend.herokuapp.com/'
 export const GetArticles = async () => {
   try {
     let response = await axios.get(url + 'api/v1/articles')
-    debugger
     const articles = response.data.articles
     return articles
-  } catch (error) {
-    debugger
+  } catch (error) { 
     console.log(error)
     return error
   }
