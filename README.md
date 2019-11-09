@@ -6,6 +6,7 @@ This code is used to create a mobile app which lists articles, displays a full s
 
 [Front-end deployment](https://classynews.netlify.com/)   
 [Back-end deployment](https://classy-news-backend.herokuapp.com/)   
+
 [GitHub for Mobile-App](https://github.com/CraftAcademy/classy_news_client/pulls)
 [GitHub for Back-end](https://github.com/CraftAcademy/classy_news_backend)   
 [GitHub for Front-end](https://github.com/CraftAcademy/classy_news_client)   
@@ -17,7 +18,7 @@ Becca Burns, Yasmine Ezequiel, Pia von Wachenfelt, David Izosimov, Miyesier Kaer
 This mobile application is written with:
 - React Native & JavaScript
 - Yarn
-- Axis
+- Axios
 - React-navigation
 - Simulated through Xcode.
 It is connected to an API created by the same team.

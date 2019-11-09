@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, FlatList, Button } from 'react-native';
 import { authenticate } from '../../Services/AuthService'
 import LoginForm from './LoginForm'
 import { GetArticles } from '../../Services/ArticlesApiService';
 import { Image } from 'react-native-elements'
-import {Header} from './Header'
+import { Header } from './Header'
+import { StyleSheet, 
+         Text, 
+         View, 
+         FlatList, 
+         Button } from 'react-native';
 
 export default class HomeScreen extends Component {
   state = { 
@@ -15,14 +19,7 @@ export default class HomeScreen extends Component {
     user: '',
     articles: []
   }
-
-  async componentDidMount() {
-    let response = await GetArticles()
-    this.setState({
-      articles: response
-    })
-  }
-
+  
   renderLoginForm = () => {
     this.setState({
       renderLoginForm: true
@@ -40,7 +37,7 @@ export default class HomeScreen extends Component {
       return console.log('Signed in successfully')
     } 
   }
-
+ 
   emailStateHandler = text => {
     this.setState({
       email: text
@@ -51,25 +48,6 @@ export default class HomeScreen extends Component {
     this.setState({
       password: text
     })
-  }
-
-  renderArticles = ({ item }) => {
-    const article = item
-    let trim_ingress = article.content.substr(0, 75)
-    let ingress = trim_ingress.substr(0, Math.min(trim_ingress.length, trim_ingress.lastIndexOf(" "))) + ' ...'
-    return (
-      <View style={styles.articles}>
-        <Image 
-          style={styles.image}
-          source={{ uri: article.image }}
-        />
-        <Text style ={styles.title} >
-          {article.title}
-        </Text>    
-        <Text style={styles.content}>{ingress}
-        </Text> 
-      </View>
-    )
   }
 
   handleLogin = () => {
@@ -104,7 +82,43 @@ export default class HomeScreen extends Component {
       }
     }
   }
+
+  async componentDidMount() {
+    let response = await GetArticles()
+    this.setState({
+      articles: response
+    })
+  }
+
+  renderArticles = ({ item }) => {
+    const article = item
+    let trim_ingress = article.content.substr(0, 75)
+    let ingress = trim_ingress.substr(0, Math.min(trim_ingress.length, trim_ingress.lastIndexOf(" "))) + ' ...'
+    return (
+      <View style={styles.articles}>
+        <Image 
+          style={styles.image}
+          source={{ uri: article.image }}
+        />
+        <Text style ={styles.title} >
+          {article.title}
+        </Text>    
+        <Text style={styles.content}>{ingress}
+        </Text> 
+        <Button
+          title='View Article'
+          onPress={() => this.showArticle(article)}
+        />
+      </View>
+    )
+  }
   
+  showArticle(article) {
+    this.props.navigation.navigate('Article', {
+      selectedArticle: [article]
+    })
+  }
+
   render() {
     let renderLogin = this.renderLogin()
 
