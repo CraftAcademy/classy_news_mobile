@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, FlatList, Button } from 'react-native';
 import { authenticate } from '../../Services/AuthService'
 import LoginForm from './LoginForm'
 import { GetArticles } from '../../Services/ArticlesApiService';
 import { Image } from 'react-native-elements'
-import {Header} from './Header'
+import { Header } from './Header'
+import { StyleSheet, 
+         Text, 
+         View, 
+         FlatList, 
+         Button } from 'react-native';
 
 export default class HomeScreen extends Component {
   state = { 
@@ -102,7 +106,7 @@ export default class HomeScreen extends Component {
         <Text style={styles.content}>{ingress}
         </Text> 
         <Button
-          title="View Article"
+          title='View Article'
           onPress={() => this.showArticle()}
         />
       </View>
@@ -111,7 +115,9 @@ export default class HomeScreen extends Component {
   
   showArticle() {
     this.props.navigation.navigate('Article', {
-      fullArticle: this.state.fullArticle
+      fullArticle: this.state.fullArticle,
+      selectedArticle: [this.state.article],
+      message: 'Fuck you'
     })
   }
 
