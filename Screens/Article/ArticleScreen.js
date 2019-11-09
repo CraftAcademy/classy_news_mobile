@@ -7,44 +7,34 @@ import { Text,
          FlatList } from 'react-native'
 
 export default class ArticleScreen extends Component {
-  state = {
-    fullArticle: this.props.navigation.getParam(
-      "fullArticle",
-      "this field is default value if article is empty"
-    ),
-    selectedArticle: this.props.navigation.state.params.selectedArticle,
-    message: this.props.navigation.state.params.message
-  }
 
   renderSelectedArticles = ({ item }) => {
-    debugger
     let article = item
     return (
       <View style={styles.container}>
-        <Text style={styles.content}>Hello World from Article Screen!</Text>
-        {/* <Image style={styles.image} source={{ uri: this.state.article.image }}/>
-        <Text style={styles.title}>{this.state.article.title}</Text>
-        <Text style={styles.content}>{this.state.article.content}</Text>
-        <Text style={styles.author}>{this.state.article.author}</Text> */}
+        <Image style={styles.image} source={{ uri: article.image }}/>
+        <Text style={styles.title}>{article.title}</Text>
+        <Text style={styles.content}>{article.content}</Text>
+        <Text style={styles.author}>{article.author}</Text> 
       </View>
     )
   }
 
-  render(){
+  render() {
+    const { navigation } = this.props;
+    const chosenArticle = navigation.getParam('selectedArticle', 'No article to be found');  
     return (
-      <View>
-         <Header style={{flex:2}}/>
-        <Text style={styles.content}>{this.state.selectedArticle[0]}</Text>
-        <Text style={styles.content}>{this.state.message}</Text>
-        <FlatList 
-          data={this.state.fullArticle}
+      <View style={styles.container}>
+        <Header style={{flex:2}}/>
+         <FlatList 
+          data={chosenArticle}
           renderItem={this.renderSelectedArticles}
           keyExtractor={item => item.id.toString()}
         />
       </View>
-    )
+    );
   }
-}
+} 
 
 const styles = StyleSheet.create({
   container: {
@@ -54,10 +44,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   image:{
-    width: 130, 
-    height: 100,
-    marginLeft: 20,
-    padding:90
+    alignSelf: 'center',
+    width: 350,
+    height: 200,
+    marginLeft: 20
   },
   title: {
     padding: 10,

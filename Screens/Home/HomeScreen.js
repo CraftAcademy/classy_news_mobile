@@ -107,17 +107,15 @@ export default class HomeScreen extends Component {
         </Text> 
         <Button
           title='View Article'
-          onPress={() => this.showArticle()}
+          onPress={() => this.showArticle(article)}
         />
       </View>
     )
   }
   
-  showArticle() {
+  showArticle(article) {
     this.props.navigation.navigate('Article', {
-      fullArticle: this.state.fullArticle,
-      selectedArticle: [this.state.article],
-      message: 'Fuck you'
+      selectedArticle: [article]
     })
   }
 
