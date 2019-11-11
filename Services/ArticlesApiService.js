@@ -1,5 +1,4 @@
 import axios from 'axios'
-
 const url = 'https://classy-news-backend.herokuapp.com/'
 
 export const GetArticles = async () => {
