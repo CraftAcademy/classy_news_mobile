@@ -127,6 +127,7 @@ export default class HomeScreen extends Component {
         <Header style={{flex:2}}/>
         {renderLogin}
         <FlatList 
+          inverted
           data={this.state.articles}
           renderItem={this.renderArticles}
           keyExtractor={item => item.id.toString()}
